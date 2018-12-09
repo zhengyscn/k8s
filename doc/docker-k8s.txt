@@ -1,0 +1,259 @@
+﻿
+- ansible
+	传统方式， 管理多个host的工具；
+- docker
+	- docker compose
+		单机的容器编排工具
+	- docker swarm
+		多个docker集群编排工具
+	- docker machine
+		预处理工具
+	- mesos
+		idc os
+		资源分配工具
+	- marathon
+	
+	- kubernetes
+		80% 市场份额
+		
+		
+- Devops, MicroServices, Blockchain
+
+分层架构
+
+分发、构建
+
+
+-- CI
+	持续集成
+	
+-- CD
+	持续交付， Delivery
+	
+-- CD
+	持续部署， Deployment
+	
+	
+- 蓝绿部署
+- 灰度部署
+- 金丝雀方式
+
+
+计划 -> 架构 -> 开发 -> 构建 -> 测试 -> 运维
+	
+	
+
+
+
+容器技术 使得 持续部署变得简单；
+
+
+devops不是一种技术，而是一种文化；
+通过工具化、自动化的方式来解决问题；
+
+
+
+## k8s
+
+- 舵手，飞行员
+- Borg（Google内部容器编排工具）
+	- 自动装箱，自我修复，水平扩展，服务发现和负载均衡；
+	
+	
+- 2015.7发布v1.0
+- 2017.10 Docker支持swarm和k8s
+- 代码托管在Github上
+
+
+
+
+PAAS 平台及服务
+
+
+openshift
+
+
+有了k8s，从此单体转变成了群体。
+
+
+
+# Loop 
+循环
+周期性探测
+
+
+# Kubernetes Cluster
+- Master/Node
+	-- Master
+		Masters(3台)
+
+		## 有三个核心组件
+		1. Api Server
+			- 负责接收并处理请求；
+		2. Scheduler
+			- 调度器
+			- 调度容器创建的请求；
+		3. Controller-Manager
+			- 控制器管理器有N种；
+			- 控制容器健康管理器；确保容器是健康的；
+			
+	-- Node
+		Node(Worker n台)
+		
+		集群代理 Kubeler
+			与Api Server进行交互调度组件
+		容器引擎 docker
+
+- Pod
+最小单元
+元数据信息
+k8s并不直接调度容器的运行，调度的目标是Pod；
+Pod可以理解容器的外壳，作为一层抽象的封装；
+Pod内部主要是放容器；
+
+一个Pod可以容器多个容器，一个Pod内的多个容器享受同一个底层的网络名称空间；
+	名称空间：Network、UTS、IPC
+另外三个互相隔离：User、MNT(nginx+tomcat+db)、PHP
+
+Pod模拟传统虚拟机，一个虚拟机内可以运行多个app，多个app直接可以直接通信；
+
+一般情况：一个Pod内只放一个容器；
+	
+
+Pod是原子单元
+Pod是在Node上运行，Pod上的N个容器只能运行在一个Node以上；
+
+- 自主式Pod
+- 控制器管理的Pod
+	- ReplicationController 副本控制器
+	
+
+## 标签选择器 selector
+Pod上打标签
+控制器识别Pod
+selector： 通过标签过滤符合条件的资源对象的机制；
+
+
+## api
+restful api
+
+	
+	
+## HPA
+	- HorizontalPodAutoscaler
+	- 水平扩容Pod
+	
+	
+ipvs
+
+lvs	
+	
+	
+	
+IAAS
+
+LBaas
+
+	
+
+## CNI: 控制网络接口
+- flannel：网络配置
+- calico：网络配置，网络策略
+- canel：flannel(网络配置) + calico(网络策略)
+- ......	
+	
+	
+
+
+
+$ iptables -vnL -t nat
+
+NodePort
+
+
+有状态的迁移到k8s上是非常有挑战的 
+比如：redis、mysql
+
+
+
+## YAML	
+
+
+
+## 资源清单 | 配置清单
+
+- restful api
+	- GET
+	- POST
+	- DELTE
+	- PUT
+	- .....
+- kubectl run/get/edit/...
+
+
+- 资源：
+	- 资源实例化后是一个对象；
+	- workload: 
+		- Pod
+		- ReplicaSet
+		- Deployment
+		- StatefulSet
+		- DaemonSet
+		- Job
+		- Cronjob
+		
+	- 服务发现及均衡
+		- Service
+		- Ingress
+		
+	- 配置与存储
+		- Volume
+		- CSI
+			容器存储接口
+		
+		- ConfigMap, Secret
+		- DownwardAPI
+		
+	- 集群级资源
+		- Namespace, Node, Role, ClusterRole, RoleBind, ClusterRoleBind
+		
+	- 元数据型资源
+		- HPA
+			PodTemplate, LimitRange
+	- ......
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
