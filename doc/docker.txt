@@ -1,0 +1,168 @@
+
+
+lxc
+
+
+## 主机级虚拟化：
+Vmware
+	- Type 1
+		- 
+	- Type 2
+		- 
+		
+		
+---------------------------
+cgroup + namespace
+
+## Docker arch
+	- Docker daemon
+	- Docker client
+	- Docker registry
+
+
+https://hub.docker.com
+
+c/s
+
+daemon -> unix/socket
+	- ipv4
+	- ipv6
+	- file
+
+- tcp
+- unix/socket
+
+
+## 企业版本
+docker-ee
+
+## 社区版本
+docker-ce
+
+
+## 依赖
+CentOS 7
+	
+	
+k8s 支持docker版本1.17
+
+
+$ cd /etc/yum.repos.d/
+$ wget https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/centos/docker-ce.repo
+$ vim docker-ce.repo
+%s@@mirrors.tuna.tsinghua.edu.cn/docker-ce@
+
+
+
+$ yum install docker-ce
+$ mkdir /etc/docker
+$ vim /etc/docker/daemon.json
+$ ......
+
+
+$ docker info
+$ docker search nginx
+$ docker images
+
+## image
+$ docker image pull nginx:1.14-alpine
+$ docker pull busybox
+$ docker image rm
+$ docker rmi 
+$ docker image ls
+$ docker image ls --no-trunc
+
+
+## 查看Docker的网络
+$ docker network ls
+
+
+$ docker run --name d1 -it busybox:latest
+/ # mkdir /data/html
+/ # echo "busybox httpd server." > /data/html/index.html
+/ # httpd -f -h /data/html
+
+$ docker inspect d1
+$ curl 172.17.0.2
+
+## 启动已停止的container
+$ docker start -i -a d1
+
+$ docker kill 
+$ docker rm b1
+
+
+$ docker run --name web1 -d nginx:1.14-alpine
+$ docker inspect web1
+
+$ docker run --name kvstore1 -d redis:4-alpine
+$ docker exec -it kvstore1 /bin/sh
+
+
+$ docker logs web1
+$ docker logs kvstore1
+
+
+
+
+
+--------------制作容器-------------------
+$ docker commit -p d1 zhengyscn/httpd:v1.0-1
+$ docker tag zhengyscn/httpd:v1.0-1 zhengyscn/httpd:latest
+$ docker image rm zhengyscn/httpd:v1.0-1
+$ docker commit -a "YanSheng Zheng <zhengyscn@gmail.com>" -c 'CMD ["/bin/httpd","-f","-h","/data/html/index.html"]' -p tt2 zhengyscn/busybox-httpd:v2.0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
