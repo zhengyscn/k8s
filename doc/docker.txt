@@ -107,21 +107,16 @@ $ docker logs kvstore1
 
 
 --------------ÖÆ×÷ÈÝÆ÷-------------------
-$ docker commit -p d1 zhengyscn/httpd:v1.0-1
+$ docker commit -p t1 zhengyscn/httpd:v1.0-1
 $ docker tag zhengyscn/httpd:v1.0-1 zhengyscn/httpd:latest
 $ docker image rm zhengyscn/httpd:v1.0-1
-$ docker commit -a "YanSheng Zheng <zhengyscn@gmail.com>" -c 'CMD ["/bin/httpd","-f","-h","/data/html/index.html"]' -p tt2 zhengyscn/busybox-httpd:v2.0
+$ docker commit -a "YanSheng Zheng <zhengyscn@gmail.com>" -c 'CMD ["/bin/httpd","-f","-h","/data/html"]' -p t1 zhengyscn/httpd:v2.0
 
 
 
 
-
-
-
-
-
-
-
+$ docker exec -it t1 /bin/sh
+/ # ps 
 
 
 
