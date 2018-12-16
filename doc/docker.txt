@@ -128,6 +128,318 @@ $ docker exec -it t1 /bin/sh
 
 
 
+--------------------网络概述-------------------------
+
+## 虚拟化网络
+通过软件的方式实现
+OVS：OpenVSwitch
+	- vlan
+	- vxlan
+	- sdn
+
+
+	
+## Docker默认提供三种网络
+- bridge
+	桥接式网络，并不是物理桥，表示Nat桥；
+	软交换机docker0， 充当网卡设备和交换设备；
+- host
+	让容器使用宿主机的网络名称空间
+- none
+	空、没有网络、只有lo接口；
+	不需要网络通信的；
+
+$ docker network ls
+
+
+# yum install bridge-utils
+$ brctl show
+
+
+
+
+
+--------------------5. 容器网络-------------------------
+$ docker run --name t1 -it --rm busybox:latest
+$ docker run --name t1 -it --network bridge --rm busybox:latest
+$ docker run --name t1 -it --network none --rm busybox:latest
+$ docker run --name t1 -it -h t1-zhengyscn --network none --rm busybox:latest
+
+-h --hostname HOSTNAME
+--dns DNS_SERVER_IP
+--dns-search
+--add-host HOSTNAME:IP
+-p
+	# docker port b1
+	-p 80   				# 动态端口
+	-p 172.20.0.67::80		# 动态随机端口
+	-p 80:80				# 指定宿主机端口映射
+	-p 8080:80				# 指定宿主机端口映射
+
+
+
+```
+1. 主机名就是容器id
+2. 启动时修改主机名-h t1.zhengyscn
+```
+
+
+
+# vim /etc/docker/daemon.json
+{
+	"hosts" : ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]
+}
+# systemctl stop/start/restart docker
+
+
+
+## 执行远程主机的docker命令
+docker -H 172.20.0.67:2375 ps
+
+
+--------------------6. 容器存储卷-------------------------
+
+## 宿主机 和 容器 卷映射
+/data/web -> /container/data/web
+
+## 持久存储
+依赖共享存储
+
+
+## 应用可以分为 有状态 和 无状态
+有状态的：是指这次请求和上几次请求有关系的；
+	- mysql
+	- redis
+	- tomcat
+		- session -> memory -> kv system
+无状态的：没有关联关系；
+	- nginx
+	- haproxy
+	- lvs
+	
+
+
+## 有状态；无状态；需要存储；不需要存储；
+
+
+
+只有有状态，存储卷是必须的；
+
+
+Docker-managed volume
+-v 选项即可使用volume
+# docker run --name b1 --it -v /data busybox:latest
+
+查看容器卷、卷标识及挂载主机目录
+# docker inspect -f {{.Mounts}} b1
+
+
+Bind-mount Volume
+# docker run -it -v HOSTDIR:VOLUMEDIR --name b2 busybox:latest
+# docker inspect -f {{.Mounts}} b2
+
+
+## 复制网络
+# docker run --name infracon -v /data/infracon/volume:/data/www/html busybox
+# docker run --name nginx --network container:infracon --volume-from infracon -it busybox
+
+
+--------------------7. Dockerfile 1-------------------------
+## 容器编排
+
+docker-compose 单机容器编排，自动为你做镜像；
+
+
+传递变量
+
+
+不建议修改配置文件，而是传环境变量；
+
+
+Dockerfile
+- 纯文本文件
+- 指令 和 参数， 一般建议大写
+- 注释信息
+- 从上而下顺序执行；
+
+
+
+1) 专用工作目录
+2) 文件名首字母大写
+3) 引用文件路径必须在当前目录内；
+4) .dockeringore 隐藏文件
+5) docker build xxx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------8. Dockerfile 2-------------------------
+
+
+
+--------------------9. Registry-------------------------
+
+
+--------------------10. Docker资源限制级验证-------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
