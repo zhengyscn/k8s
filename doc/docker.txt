@@ -244,7 +244,7 @@ Bind-mount Volume
 # docker run --name nginx --network container:infracon --volume-from infracon -it busybox
 
 
---------------------7. Dockerfile 1-------------------------
+--------------------Dockerfile-------------------------
 ## 容器编排
 
 docker-compose 单机容器编排，自动为你做镜像；
@@ -272,30 +272,54 @@ Dockerfile
 
 
 
+https://github.com/docker-library
 
 
 
 
 
+# yum info docker-registry
+# yum install docker-registry.  (包名：docker-distribution)
+# rpm -ql docker-distribution
+/etc/docker-distribution/registry/config.yml         # 配置文件
+/usr/bin/registry                                    # 主程序
+/usr/lib/systemd/system/docker-distribution.service  # 启动服务
+/usr/share/doc/docker-distribution-2.6.2
+/usr/share/doc/docker-distribution-2.6.2/AUTHORS
+/usr/share/doc/docker-distribution-2.6.2/CONTRIBUTING.md
+/usr/share/doc/docker-distribution-2.6.2/LICENSE
+/usr/share/doc/docker-distribution-2.6.2/MAINTAINERS
+/usr/share/doc/docker-distribution-2.6.2/README.md
+/var/lib/registry 
+                                   # 数据目录
+# systemctl start docker-distribution
+# netstat -tnlp  | grep 5000
+tcp6       0      0 :::5000                 :::*                    LISTEN      18599/registry
+
+
+# docker tag zhengyscn/busybox:v0.5 10.13.128.229:5000/zhengyscn/busybox:v0.5
+# docker push 10.13.128.229:5000/zhengyscn/busybox
+The push refers to repository [10.13.128.229:5000/zhengyscn/busybox]
+Get https://10.13.128.229:5000/v2/: http: server gave HTTP response to HTTPS client
+# cat /etc/docker/daemon.json 
+{
+    "registry-mirrors": ["https://registry.docker-cn.com"]
+    "insecure-registries" : [“10.13.128.229:5000”]
+}
+# systemctl start docker.service
+# docker push 10.13.128.229:5000/zhengyscn/busybox
+The push refers to repository [10.13.128.229:5000/zhengyscn/busybox]
+62cb1cd4edb5: Pushed 
+8a788232037e: Pushed 
+# ll /var/lib/registry/
+总用量 0
+drwxr-xr-x. 3 root root 22 12月 22 12:04 docker
 
 
 
 
 
-
-
-
-
-
-
-
-
-
---------------------8. Dockerfile 2-------------------------
-
-
-
---------------------9. Registry-------------------------
+--------------------Registry-------------------------
 
 ## harbor
 https://github.com/goharbor/harbor
@@ -334,7 +358,7 @@ http://x.x.x.x:80
 > Harbor12345
 
 
---------------------10. Docker资源限制级验证-------------------------
+--------------------Docker资源限制级验证-------------------------
 
 
 
