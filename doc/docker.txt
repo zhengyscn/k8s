@@ -3,7 +3,7 @@
 lxc
 
 
-## Ö÷»ú¼¶ĞéÄâ»¯£º
+## ä¸»æœºçº§è™šæ‹ŸåŒ–ï¼š
 Vmware
 	- Type 1
 		- 
@@ -33,18 +33,18 @@ daemon -> unix/socket
 - unix/socket
 
 
-## ÆóÒµ°æ±¾
+## ä¼ä¸šç‰ˆæœ¬
 docker-ee
 
-## ÉçÇø°æ±¾
+## ç¤¾åŒºç‰ˆæœ¬
 docker-ce
 
 
-## ÒÀÀµ
+## ä¾èµ–
 CentOS 7
 	
 	
-k8s Ö§³Ödocker°æ±¾1.17
+k8s æ”¯æŒdockerç‰ˆæœ¬1.17
 
 
 $ cd /etc/yum.repos.d/
@@ -73,7 +73,7 @@ $ docker image ls
 $ docker image ls --no-trunc
 
 
-## ²é¿´DockerµÄÍøÂç
+## æŸ¥çœ‹Dockerçš„ç½‘ç»œ
 $ docker network ls
 
 
@@ -85,7 +85,7 @@ $ docker run --name d1 -it busybox:latest
 $ docker inspect d1
 $ curl 172.17.0.2
 
-## Æô¶¯ÒÑÍ£Ö¹µÄcontainer
+## å¯åŠ¨å·²åœæ­¢çš„container
 $ docker start -i -a d1
 
 $ docker kill 
@@ -106,7 +106,7 @@ $ docker logs kvstore1
 
 
 
---------------ÖÆ×÷ÈİÆ÷-------------------
+--------------åˆ¶ä½œå®¹å™¨-------------------
 $ docker commit -p t1 zhengyscn/httpd:v1.0-1
 $ docker tag zhengyscn/httpd:v1.0-1 zhengyscn/httpd:latest
 $ docker image rm zhengyscn/httpd:v1.0-1
@@ -128,26 +128,26 @@ $ docker exec -it t1 /bin/sh
 
 
 
---------------------ÍøÂç¸ÅÊö-------------------------
+--------------------ç½‘ç»œæ¦‚è¿°-------------------------
 
-## ĞéÄâ»¯ÍøÂç
-Í¨¹ıÈí¼şµÄ·½Ê½ÊµÏÖ
-OVS£ºOpenVSwitch
+## è™šæ‹ŸåŒ–ç½‘ç»œ
+é€šè¿‡è½¯ä»¶çš„æ–¹å¼å®ç°
+OVSï¼šOpenVSwitch
 	- vlan
 	- vxlan
 	- sdn
 
 
 	
-## DockerÄ¬ÈÏÌá¹©ÈıÖÖÍøÂç
+## Dockeré»˜è®¤æä¾›ä¸‰ç§ç½‘ç»œ
 - bridge
-	ÇÅ½ÓÊ½ÍøÂç£¬²¢²»ÊÇÎïÀíÇÅ£¬±íÊ¾NatÇÅ£»
-	Èí½»»»»údocker0£¬ ³äµ±Íø¿¨Éè±¸ºÍ½»»»Éè±¸£»
+	æ¡¥æ¥å¼ç½‘ç»œï¼Œå¹¶ä¸æ˜¯ç‰©ç†æ¡¥ï¼Œè¡¨ç¤ºNatæ¡¥ï¼›
+	è½¯äº¤æ¢æœºdocker0ï¼Œ å……å½“ç½‘å¡è®¾å¤‡å’Œäº¤æ¢è®¾å¤‡ï¼›
 - host
-	ÈÃÈİÆ÷Ê¹ÓÃËŞÖ÷»úµÄÍøÂçÃû³Æ¿Õ¼ä
+	è®©å®¹å™¨ä½¿ç”¨å®¿ä¸»æœºçš„ç½‘ç»œåç§°ç©ºé—´
 - none
-	¿Õ¡¢Ã»ÓĞÍøÂç¡¢Ö»ÓĞlo½Ó¿Ú£»
-	²»ĞèÒªÍøÂçÍ¨ĞÅµÄ£»
+	ç©ºã€æ²¡æœ‰ç½‘ç»œã€åªæœ‰loæ¥å£ï¼›
+	ä¸éœ€è¦ç½‘ç»œé€šä¿¡çš„ï¼›
 
 $ docker network ls
 
@@ -159,7 +159,7 @@ $ brctl show
 
 
 
---------------------5. ÈİÆ÷ÍøÂç-------------------------
+--------------------5. å®¹å™¨ç½‘ç»œ-------------------------
 $ docker run --name t1 -it --rm busybox:latest
 $ docker run --name t1 -it --network bridge --rm busybox:latest
 $ docker run --name t1 -it --network none --rm busybox:latest
@@ -171,16 +171,16 @@ $ docker run --name t1 -it -h t1-zhengyscn --network none --rm busybox:latest
 --add-host HOSTNAME:IP
 -p
 	# docker port b1
-	-p 80   				# ¶¯Ì¬¶Ë¿Ú
-	-p 172.20.0.67::80		# ¶¯Ì¬Ëæ»ú¶Ë¿Ú
-	-p 80:80				# Ö¸¶¨ËŞÖ÷»ú¶Ë¿ÚÓ³Éä
-	-p 8080:80				# Ö¸¶¨ËŞÖ÷»ú¶Ë¿ÚÓ³Éä
+	-p 80   				# åŠ¨æ€ç«¯å£
+	-p 172.20.0.67::80		# åŠ¨æ€éšæœºç«¯å£
+	-p 80:80				# æŒ‡å®šå®¿ä¸»æœºç«¯å£æ˜ å°„
+	-p 8080:80				# æŒ‡å®šå®¿ä¸»æœºç«¯å£æ˜ å°„
 
 
 
 ```
-1. Ö÷»úÃû¾ÍÊÇÈİÆ÷id
-2. Æô¶¯Ê±ĞŞ¸ÄÖ÷»úÃû-h t1.zhengyscn
+1. ä¸»æœºåå°±æ˜¯å®¹å™¨id
+2. å¯åŠ¨æ—¶ä¿®æ”¹ä¸»æœºå-h t1.zhengyscn
 ```
 
 
@@ -193,44 +193,44 @@ $ docker run --name t1 -it -h t1-zhengyscn --network none --rm busybox:latest
 
 
 
-## Ö´ĞĞÔ¶³ÌÖ÷»úµÄdockerÃüÁî
+## æ‰§è¡Œè¿œç¨‹ä¸»æœºçš„dockerå‘½ä»¤
 docker -H 172.20.0.67:2375 ps
 
 
---------------------6. ÈİÆ÷´æ´¢¾í-------------------------
+--------------------6. å®¹å™¨å­˜å‚¨å·-------------------------
 
-## ËŞÖ÷»ú ºÍ ÈİÆ÷ ¾íÓ³Éä
+## å®¿ä¸»æœº å’Œ å®¹å™¨ å·æ˜ å°„
 /data/web -> /container/data/web
 
-## ³Ö¾Ã´æ´¢
-ÒÀÀµ¹²Ïí´æ´¢
+## æŒä¹…å­˜å‚¨
+ä¾èµ–å…±äº«å­˜å‚¨
 
 
-## Ó¦ÓÃ¿ÉÒÔ·ÖÎª ÓĞ×´Ì¬ ºÍ ÎŞ×´Ì¬
-ÓĞ×´Ì¬µÄ£ºÊÇÖ¸Õâ´ÎÇëÇóºÍÉÏ¼¸´ÎÇëÇóÓĞ¹ØÏµµÄ£»
+## åº”ç”¨å¯ä»¥åˆ†ä¸º æœ‰çŠ¶æ€ å’Œ æ— çŠ¶æ€
+æœ‰çŠ¶æ€çš„ï¼šæ˜¯æŒ‡è¿™æ¬¡è¯·æ±‚å’Œä¸Šå‡ æ¬¡è¯·æ±‚æœ‰å…³ç³»çš„ï¼›
 	- mysql
 	- redis
 	- tomcat
 		- session -> memory -> kv system
-ÎŞ×´Ì¬µÄ£ºÃ»ÓĞ¹ØÁª¹ØÏµ£»
+æ— çŠ¶æ€çš„ï¼šæ²¡æœ‰å…³è”å…³ç³»ï¼›
 	- nginx
 	- haproxy
 	- lvs
 	
 
 
-## ÓĞ×´Ì¬£»ÎŞ×´Ì¬£»ĞèÒª´æ´¢£»²»ĞèÒª´æ´¢£»
+## æœ‰çŠ¶æ€ï¼›æ— çŠ¶æ€ï¼›éœ€è¦å­˜å‚¨ï¼›ä¸éœ€è¦å­˜å‚¨ï¼›
 
 
 
-Ö»ÓĞÓĞ×´Ì¬£¬´æ´¢¾íÊÇ±ØĞëµÄ£»
+åªæœ‰æœ‰çŠ¶æ€ï¼Œå­˜å‚¨å·æ˜¯å¿…é¡»çš„ï¼›
 
 
 Docker-managed volume
--v Ñ¡Ïî¼´¿ÉÊ¹ÓÃvolume
+-v é€‰é¡¹å³å¯ä½¿ç”¨volume
 # docker run --name b1 --it -v /data busybox:latest
 
-²é¿´ÈİÆ÷¾í¡¢¾í±êÊ¶¼°¹ÒÔØÖ÷»úÄ¿Â¼
+æŸ¥çœ‹å®¹å™¨å·ã€å·æ ‡è¯†åŠæŒ‚è½½ä¸»æœºç›®å½•
 # docker inspect -f {{.Mounts}} b1
 
 
@@ -239,35 +239,35 @@ Bind-mount Volume
 # docker inspect -f {{.Mounts}} b2
 
 
-## ¸´ÖÆÍøÂç
+## å¤åˆ¶ç½‘ç»œ
 # docker run --name infracon -v /data/infracon/volume:/data/www/html busybox
 # docker run --name nginx --network container:infracon --volume-from infracon -it busybox
 
 
 --------------------7. Dockerfile 1-------------------------
-## ÈİÆ÷±àÅÅ
+## å®¹å™¨ç¼–æ’
 
-docker-compose µ¥»úÈİÆ÷±àÅÅ£¬×Ô¶¯ÎªÄã×ö¾µÏñ£»
-
-
-´«µİ±äÁ¿
+docker-compose å•æœºå®¹å™¨ç¼–æ’ï¼Œè‡ªåŠ¨ä¸ºä½ åšé•œåƒï¼›
 
 
-²»½¨ÒéĞŞ¸ÄÅäÖÃÎÄ¼ş£¬¶øÊÇ´«»·¾³±äÁ¿£»
+ä¼ é€’å˜é‡
+
+
+ä¸å»ºè®®ä¿®æ”¹é…ç½®æ–‡ä»¶ï¼Œè€Œæ˜¯ä¼ ç¯å¢ƒå˜é‡ï¼›
 
 
 Dockerfile
-- ´¿ÎÄ±¾ÎÄ¼ş
-- Ö¸Áî ºÍ ²ÎÊı£¬ Ò»°ã½¨Òé´óĞ´
-- ×¢ÊÍĞÅÏ¢
-- ´ÓÉÏ¶øÏÂË³ĞòÖ´ĞĞ£»
+- çº¯æ–‡æœ¬æ–‡ä»¶
+- æŒ‡ä»¤ å’Œ å‚æ•°ï¼Œ ä¸€èˆ¬å»ºè®®å¤§å†™
+- æ³¨é‡Šä¿¡æ¯
+- ä»ä¸Šè€Œä¸‹é¡ºåºæ‰§è¡Œï¼›
 
 
 
-1) ×¨ÓÃ¹¤×÷Ä¿Â¼
-2) ÎÄ¼şÃûÊ××ÖÄ¸´óĞ´
-3) ÒıÓÃÎÄ¼şÂ·¾¶±ØĞëÔÚµ±Ç°Ä¿Â¼ÄÚ£»
-4) .dockeringore Òş²ØÎÄ¼ş
+1) ä¸“ç”¨å·¥ä½œç›®å½•
+2) æ–‡ä»¶åé¦–å­—æ¯å¤§å†™
+3) å¼•ç”¨æ–‡ä»¶è·¯å¾„å¿…é¡»åœ¨å½“å‰ç›®å½•å†…ï¼›
+4) .dockeringore éšè—æ–‡ä»¶
 5) docker build xxx
 
 
@@ -297,64 +297,44 @@ Dockerfile
 
 --------------------9. Registry-------------------------
 
+## harbor
+https://github.com/goharbor/harbor
+https://github.com/goharbor/harbor/releases
 
---------------------10. Docker×ÊÔ´ÏŞÖÆ¼¶ÑéÖ¤-------------------------
+$ wget https://storage.googleapis.com/harbor-releases/release-1.7.0/harbor-offline-installer-v1.7.0.tgz
+$ tar -xf harbor-offline-installer-v1.7.0.tgz -C /usr/local/
+$ cd /usr/local/harbor/
+$ vim harbor.cfg
+# yum install epee-release
+# yum info docker-compose
+# yum install docker-compose
+# ./install.sh
+âœ” ----Harbor has been installed and started successfully.----
 
+Now you should be able to visit the admin portal at http://10.13.128.229 . 
+For more details, please visit https://github.com/goharbor/harbor .
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# netstat -tnlp | grep docker
+tcp        0      0 127.0.0.1:1514          0.0.0.0:*               LISTEN      23035/docker-proxy  
+tcp6       0      0 :::443                  :::*                    LISTEN      23912/docker-proxy  
+tcp6       0      0 :::4443                 :::*                    LISTEN      23900/docker-proxy  
+tcp6       0      0 :::80                   :::*                    LISTEN      23924/docker-proxy
 
 
+harboråŸºæœ¬æ“ä½œ
+# cd /usr/local/harbor
+# docker-compose pause
+# docker-compose unpause
+# docker-compose start
+# docker-compose stop
+
+æµè§ˆå™¨è®¿é—®WebæœåŠ¡
+http://x.x.x.x:80
+> admin
+> Harbor12345
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+--------------------10. Dockerèµ„æºé™åˆ¶çº§éªŒè¯-------------------------
 
 
 
