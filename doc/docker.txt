@@ -345,10 +345,30 @@ http://x.x.x.x:80
 > Harbor12345
 
 
---------------------Docker资源限制级验证-------------------------
+---------
+# docker tag busybox:latest 10.13.128.127/developer/busybox:latest
+# docker login 52.81.19.39/developer/busybox
+Username: admin    
+Password: 
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+
+# docker push 52.81.19.39/developer/busybox
+The push refers to repository [52.81.19.39/developer/busybox]
+8a788232037e: Pushed 
+latest: digest: sha256:915f390a8912e16d4beb8689720a17348f3f6d1a7b659697df850ab625ea29d5 size: 527
 
 
+-----------Docker资源限制级验证-------------------------
 
+# docker run --name stress -it --rm -m 256m lorel/docker-stress-ng:latest stress --vm 2
+# docker stats stress
+
+# docker run --name stress -it --rm --cpus 2 lorel/docker-stress-ng:latest stress --cpu 8
+# docker run --name stress -it --rm lorel/docker-stress-ng:latest stress --cpu 8
 
 
 
