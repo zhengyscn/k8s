@@ -1,17 +1,5 @@
 
-
-lxc
-
-
-## 主机级虚拟化：
-Vmware
-	- Type 1
-		- 
-	- Type 2
-		- 
-		
-		
----------------------------
+## Container
 cgroup + namespace
 
 ## Docker arch
@@ -44,44 +32,40 @@ docker-ce
 CentOS 7
 	
 	
-k8s 支持docker版本1.17
-
-
+## k8s 支持docker版本1.17
 $ cd /etc/yum.repos.d/
 $ wget https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/centos/docker-ce.repo
-$ vim docker-ce.repo
-%s@@mirrors.tuna.tsinghua.edu.cn/docker-ce@
-
-
-
 $ yum install docker-ce
 $ mkdir /etc/docker
 $ vim /etc/docker/daemon.json
-$ ......
+{
+    "registry-mirrors": ["https://registry.docker-cn.com"]
+}
 
-
+## detail
 $ docker info
 $ docker search nginx
 $ docker images
 
 ## image
 $ docker image pull nginx:1.14-alpine
-$ docker pull busybox
+$ docker pull busybox:latest
 $ docker image rm
 $ docker rmi 
 $ docker image ls
 $ docker image ls --no-trunc
 
-
-## 查看Docker的网络
+## network
 $ docker network ls
+# iptables -t nat -vnL
 
-
+## run container
 $ docker run --name d1 -it busybox:latest
 / # mkdir /data/html
 / # echo "busybox httpd server." > /data/html/index.html
 / # httpd -f -h /data/html
 
+## container detail
 $ docker inspect d1
 $ curl 172.17.0.2
 
@@ -112,19 +96,22 @@ $ docker tag zhengyscn/httpd:v1.0-1 zhengyscn/httpd:latest
 $ docker image rm zhengyscn/httpd:v1.0-1
 $ docker commit -a "YanSheng Zheng <zhengyscn@gmail.com>" -c 'CMD ["/bin/httpd","-f","-h","/data/html"]' -p t1 zhengyscn/httpd:v2.0
 
+## image save and load
+# docker save -o my-images.gz busybox:latest redis:4-alpine
+# docker load -i my-images.gz
+
+# docker login -u zhengyscn
+Password: 
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
 
 
 
 $ docker exec -it t1 /bin/sh
 / # ps 
-
-
-
-
-
-
-
-
 
 
 
